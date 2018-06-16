@@ -1,6 +1,6 @@
 {
   "name": "rc-target-size",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "a tool help get size of element for React, support higher-order component and component render.",
   "main": "dist/index.js",
   "scripts": {
@@ -12,6 +12,10 @@
     "check": "npm run lint && npm run flow",
     "prepare": "npm run clean && npm run build && npm run check"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lamhieu-vk/rc-target-size.git"
+  },
   "keywords": [
     "react",
     "target",
@@ -21,7 +25,10 @@
     "placeholder",
     "hoc",
     "component",
-    "ssr"
+    "ssr",
+    "library",
+    "detector",
+    "resize"
   ],
   "author": "Lam Hieu <lamhieu.vk@gmail.com>",
   "license": "MIT",
