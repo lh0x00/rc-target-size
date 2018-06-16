@@ -1,0 +1,14 @@
+/* eslint-disable no-unused-vars */
+
+type TImageSource = string | null
+
+type TProps = { [key: string]: any }
+
+type TState = { [key: string]: any }
+
+type TConfig = {
+  elementId?: string,
+  rate?: number,
+  mode?: string,
+  mapStateToProps?: Function,
+};

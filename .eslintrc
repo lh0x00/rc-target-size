@@ -1,0 +1,37 @@
+{
+  "parser": "babel-eslint",
+  "extends": "airbnb",
+  "plugins": [
+    "flowtype"
+  ],
+  "env": {
+    "browser": true,
+    "es6": true,
+    "node": true
+  },
+  "rules": {
+    "semi": [
+      "error",
+      "never"
+    ],
+    "react/jsx-filename-extension": 0,
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": true
+      }
+    ],
+    "flowtype/define-flow-type": 1,
+    "flowtype/use-flow-type": 1,
+    "react/no-unused-prop-types": 0,
+    "jsx-a11y/no-static-element-interactions": 0
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "paths": ["src", "node_modules"],
+        "extensions": [".js", ".jsx"]
+      }
+    }
+  }
+}

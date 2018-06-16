@@ -1,0 +1,22 @@
+{
+  "presets": [
+    "react",
+    "env",
+    "es2017",
+    "stage-3",
+    "flow"
+  ],
+  "plugins": [
+    "transform-flow-strip-types",
+    "transform-class-properties",
+    [
+      "module-resolver",
+      {
+        "root": [
+          "./",
+          "./src"
+        ]
+      }
+    ]
+  ]
+}

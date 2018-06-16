@@ -1,0 +1,56 @@
+{
+  "name": "rc-target-size",
+  "version": "1.0.0",
+  "description": "a tool help get size of element for React, support higher-order component and component render.",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "babel src --out-dir dist",
+    "build:watch": "babel src --out-dir dist --watch",
+    "clean": "rimraf dist",
+    "lint": "eslint --config .eslintrc . --ignore-path .gitignore --fix",
+    "flow": "flow",
+    "check": "npm run lint && npm run flow",
+    "prepare": "npm run clean && npm run build && npm run check"
+  },
+  "keywords": [
+    "react",
+    "target",
+    "responsive",
+    "size",
+    "render",
+    "placeholder",
+    "hoc",
+    "component",
+    "ssr"
+  ],
+  "author": "Lam Hieu <lamhieu.vk@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-eslint": "^8.2.3",
+    "babel-plugin-module-resolver": "^3.1.1",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-flow-strip-types": "^6.22.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-es2017": "^6.24.1",
+    "babel-preset-flow": "^6.23.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-3": "^6.24.1",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-flowtype": "^2.48.0",
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.8.2",
+    "flow-bin": "^0.73.0",
+    "rimraf": "^2.6.2"
+  },
+  "dependencies": {
+    "lodash.debounce": "^4.0.8",
+    "lodash.isfunction": "^3.0.9",
+    "lodash.throttle": "^4.1.1",
+    "react": "^15.4.0",
+    "react-dom": "^15.4.0",
+    "resize-observer-polyfill": "^1.5.0"
+  }
+}
