@@ -1,6 +1,6 @@
 {
   "name": "rc-target-size",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "a tool help get size of element for React, support higher-order component and component render.",
   "main": "dist/index.js",
   "scripts": {

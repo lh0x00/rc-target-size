@@ -43,7 +43,7 @@ class TargetSize extends PureComponent<TProps, TState> {
 
   getResizableElement = () => {
     const { elementId } = this.props
-    return elementId && document ? document.getElementById(elementId) : this.element.parentElement
+    return elementId && document ? document.getElementById(elementId) : this.element
   }
 
   getChildProps = () => {
@@ -101,7 +101,7 @@ class TargetSize extends PureComponent<TProps, TState> {
       cloneElement(children(childProps)) : cloneElement(children, childProps)
 
     // set tag
-    const Tag = tag || 'ts'
+    const Tag = tag || 'div'
 
     // get props for target
     const targetProps = this.getTargetProps()
