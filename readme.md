@@ -4,7 +4,9 @@
 [![npm downloads][npm-downloads-image]][npm-url]
 [![github issues][github-issues-image]][github-issues-url]
 
-a higher-order component to reduce render times quickly for lazy people like me!
+a tool help get size of element for React, support higher-order component and component render.
+
+**support: react ^15.00**
 
 
 # install
