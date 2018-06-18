@@ -10,5 +10,7 @@ type TConfig = {
   elementId?: string,
   rate?: number,
   mode?: string,
+  handleWidth?: boolean,
+  handleHeight?: boolean,
   mapStateToProps?: Function,
 };
