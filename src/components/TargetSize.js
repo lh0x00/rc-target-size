@@ -31,7 +31,6 @@ class TargetSize extends PureComponent<TProps, TState> {
     const resizableElement = this.getResizableElement()
     if (!this.target) return console.error('Can not found target element') // eslint-disable-line no-console
     this.target.observe(resizableElement)
-    this.canUseDOM(true)
     return true
   }
 
@@ -39,7 +38,6 @@ class TargetSize extends PureComponent<TProps, TState> {
     const resizableElement = this.getResizableElement()
     if (!this.target) return console.error('Can not found target element') // eslint-disable-line no-console
     this.target.unobserve(resizableElement)
-    this.canUseDOM(false)
     return true
   }
 
@@ -76,13 +74,9 @@ class TargetSize extends PureComponent<TProps, TState> {
       const shouldUpdateHeight = (handleAll || handleHeight) && isResizedHeight
 
       if (shouldUpdateWidth || shouldUpdateHeight) {
-        this.setState({ width: nextWidth, height: nextHeight })
+        this.setState({ canUseDOM: true, width: nextWidth, height: nextHeight })
       }
     })
-  }
-
-  canUseDOM = (status: boolean) => {
-    this.setState({ canUseDOM: status })
   }
 
   createRef = (el: any) => {
