@@ -115,8 +115,8 @@ values return to your components, append to props
 
 | name      	| type    	| description                         	|
 |-----------	|---------	|-------------------------------------	|
-| width     	| Number  	| width of element                    	|
-| height    	| Number  	| height of element                   	|
+| width     	| Number  	| width of element. default: 0          |
+| height    	| Number  	| height of element. default: 0        	|
 | canUseDOM 	| Boolean 	| the test was able to use DOM or not 	|
 
 [npm-url]: https://npmjs.org/package/rc-target-size

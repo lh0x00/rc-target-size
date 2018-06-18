@@ -4,7 +4,11 @@ type TImageSource = string | null
 
 type TProps = { [key: string]: any }
 
-type TState = { [key: string]: any }
+type TState = {
+  canUseDOM: boolean,
+  height: number,
+  width: number,
+}
 
 type TConfig = {
   elementId?: string,
