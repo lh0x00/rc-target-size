@@ -5,6 +5,7 @@ import isFunction from 'lodash.isfunction'
 import debounce from 'lodash.debounce'
 import throttle from 'lodash.throttle'
 import TargetReference from 'components/TargetReference'
+import { handleError } from 'lib/util'
 
 const refreshMode = { debounce, throttle }
 
@@ -20,8 +21,10 @@ class TargetSize extends PureComponent<TProps, TState> {
     this.state = { canUseDOM: false, width: 0, height: 0 }
 
     const refreshHandler = refreshMode && refreshMode[mode]
+    if (!isFunction(refreshHandler)) handleError('Mode is not support') // eslint-disable-line no-console
+
     const resizeObserver =
-      refreshHandler(this.createResizeObserver, rate) || this.createResizeObserver
+      (isFunction(refreshHandler) && refreshHandler(this.createResizeObserver, rate)) || this.createResizeObserver
     this.target = new ResizeObserver(resizeObserver)
 
     this.element = null
@@ -29,14 +32,14 @@ class TargetSize extends PureComponent<TProps, TState> {
 
   componentDidMount() {
     const resizableElement = this.getResizableElement()
-    if (!this.target) return console.error('Can not found target element') // eslint-disable-line no-console
+    if (!this.target) return handleError('Can not found target element') // eslint-disable-line no-console
     this.target.observe(resizableElement)
     return true
   }
 
   componentWillUnmount() {
     const resizableElement = this.getResizableElement()
-    if (!this.target) return console.error('Can not found target element') // eslint-disable-line no-console
+    if (!this.target) return handleError('Can not found target element') // eslint-disable-line no-console
     this.target.unobserve(resizableElement)
     return true
   }

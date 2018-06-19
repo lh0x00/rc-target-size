@@ -1,6 +1,6 @@
 {
   "name": "rc-target-size",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "a tool help get size of element for React, support higher-order component and component render.",
   "main": "dist/index.js",
   "scripts": {
@@ -49,6 +49,7 @@
     "eslint-plugin-import": "^2.12.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.8.2",
+    "flow": "^0.2.3",
     "flow-bin": "^0.73.0",
     "rimraf": "^2.6.2"
   },
