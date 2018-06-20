@@ -18,3 +18,5 @@ type TConfig = {
   handleHeight?: boolean,
   mapStateToProps?: Function,
 };
+
+type TChildProps = { [key: string]: any }

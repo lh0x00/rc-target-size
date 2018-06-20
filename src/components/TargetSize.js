@@ -40,25 +40,30 @@ class TargetSize extends PureComponent<TProps, TState> {
   }
 
   componentDidMount() {
-    const resizableElement = this.getResizableElement()
-    if (!this.target) return handleError('Can not found target element') // eslint-disable-line no-console
-    this.target.observe(resizableElement)
-    return true
+    const [isAvailable, element] = this.shouldUseElement()
+    if (isAvailable) this.target.observe(element)
   }
 
   componentWillUnmount() {
-    const resizableElement = this.getResizableElement()
-    if (!this.target) return handleError('Can not found target element') // eslint-disable-line no-console
-    this.target.unobserve(resizableElement)
-    return true
+    const [isAvailable, element] = this.shouldUseElement()
+    if (isAvailable) this.target.unobserve(element)
   }
 
-  getResizableElement = () => {
+  shouldUseElement = (): [boolean, any] => {
+    const resizableElement = this.getResizableElement()
+    if (!this.target) return [false, handleError('Not found target element')] // eslint-disable-line no-console
+
+    if (!resizableElement) return [false, handleError('Not found resizable element')] // eslint-disable-line no-console
+
+    return [true, resizableElement]
+  }
+
+  getResizableElement = (): any => {
     const { elementId } = this.props
     return elementId ? document.getElementById(elementId) : findDOMNode(this.element) // eslint-disable-line react/no-find-dom-node
   }
 
-  getChildProps = () => {
+  getChildProps = (): TChildProps => {
     const { canUseDOM, width, height } = this.state
     const { mapStateToProps } = this.props
 
@@ -72,25 +77,28 @@ class TargetSize extends PureComponent<TProps, TState> {
     }
   }
 
-  createResizeObserver = (entries: any[]) => {
+  createResizeObserver = (entries: any[]): any => {
     const { width: prevWidth, height: prevHeight } = this.state
     const { handleWidth = false, handleHeight = false } = this.props
-    console.log({ a: this.element.scrollTop, b: this.getResizableElement().scrollTop })
-    // console.log(getComputedStyle(this.getResizableElement()))
-    entries.forEach((entry) => {
-      const { width: nextWidth, height: nextHeight } = entry.contentRect
 
-      const handleAll = (!handleWidth && !handleHeight)
-      const isResizedWidth = Math.floor(prevWidth) !== Math.floor(nextWidth)
-      const isResizedHeight = Math.floor(prevHeight) !== Math.floor(nextHeight)
+    const entry = entries && entries[0]
 
-      const shouldUpdateWidth = (handleAll || handleWidth) && isResizedWidth
-      const shouldUpdateHeight = (handleAll || handleHeight) && isResizedHeight
+    if (!entry) return handleError('Can not observe the element, maybe the element does not exist')
 
-      if (shouldUpdateWidth || shouldUpdateHeight) {
-        this.setState({ canUseDOM: true, width: nextWidth, height: nextHeight })
-      }
-    })
+    const { width: nextWidth, height: nextHeight } = entry.contentRect
+
+    const handleAll = (!handleWidth && !handleHeight)
+    const isResizedWidth = Math.floor(prevWidth) !== Math.floor(nextWidth)
+    const isResizedHeight = Math.floor(prevHeight) !== Math.floor(nextHeight)
+
+    const shouldUpdateWidth = (handleAll || handleWidth) && isResizedWidth
+    const shouldUpdateHeight = (handleAll || handleHeight) && isResizedHeight
+
+    if (shouldUpdateWidth || shouldUpdateHeight) {
+      this.setState({ canUseDOM: true, width: nextWidth, height: nextHeight })
+    }
+
+    return true
   }
 
   createRef = (el: any) => {
