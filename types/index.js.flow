@@ -8,6 +8,10 @@ type TState = {
   canUseDOM: boolean,
   height: number,
   width: number,
+  offset: {
+    x: number,
+    y: number,
+  }
 }
 
 type TConfig = {
