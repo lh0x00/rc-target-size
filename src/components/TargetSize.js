@@ -6,6 +6,7 @@ import debounce from 'lodash.debounce'
 import throttle from 'lodash.throttle'
 import TargetReference from 'components/TargetReference'
 import { handleWarning, handleError } from 'lib/util'
+import { DEFAULT_CONFIG, DEFAULT_VALUES } from 'lib/enums'
 
 const refreshMode = { debounce, throttle }
 
@@ -17,8 +18,16 @@ class TargetSize extends PureComponent<TProps, TState> {
   constructor(props) {
     super(props)
 
-    const { mode = 'throttle', rate = 500 } = props || {}
-    this.state = { canUseDOM: false, width: 0, height: 0 }
+    const {
+      mode = DEFAULT_CONFIG.mode,
+      rate = DEFAULT_CONFIG.rate,
+    } = props || {}
+
+    this.state = {
+      canUseDOM: DEFAULT_VALUES.canUseDOM,
+      width: DEFAULT_VALUES.width,
+      height: DEFAULT_VALUES.height,
+    }
 
     const refreshHandler = refreshMode && refreshMode[mode]
     if (!isFunction(refreshHandler)) handleWarning('Mode is not support') // eslint-disable-line no-console
@@ -66,6 +75,8 @@ class TargetSize extends PureComponent<TProps, TState> {
   createResizeObserver = (entries: any[]) => {
     const { width: prevWidth, height: prevHeight } = this.state
     const { handleWidth = false, handleHeight = false } = this.props
+    console.log({ a: this.element.scrollTop, b: this.getResizableElement().scrollTop })
+    // console.log(getComputedStyle(this.getResizableElement()))
     entries.forEach((entry) => {
       const { width: nextWidth, height: nextHeight } = entry.contentRect
 
