@@ -5,7 +5,7 @@ import isFunction from 'lodash.isfunction'
 import debounce from 'lodash.debounce'
 import throttle from 'lodash.throttle'
 import TargetReference from 'components/TargetReference'
-import { handleWarning, handleError } from 'lib/util'
+import { handleWarning, handleError, compare } from 'lib/util'
 import { DEFAULT_CONFIG, DEFAULT_VALUES } from 'lib/enums'
 
 const refreshMode = { debounce, throttle }
@@ -122,11 +122,10 @@ class TargetSize extends PureComponent<TProps, TState> {
     }
 
     const handleAll = !handleWidth && !handleHeight && !handleOffset
-    const isChangedWidth = Math.floor(prevWidth) !== Math.floor(nextWidth)
-    const isChangedHeight = Math.floor(prevHeight) !== Math.floor(nextHeight)
-    const isChangedOffset =
-      Math.floor(prevOffset.y) !== Math.floor(nextOffset.y) ||
-      Math.floor(prevOffset.x) !== Math.floor(nextOffset.x)
+
+    const isChangedWidth = !compare(prevWidth, nextWidth)
+    const isChangedHeight = !compare(prevHeight, nextHeight)
+    const isChangedOffset = !compare(prevOffset.y, nextOffset.y) || !compare(prevOffset.x, nextOffset.x)
 
     const shouldUpdateWidth = (handleAll || handleWidth) && isChangedWidth
     const shouldUpdateHeight = (handleAll || handleHeight) && isChangedHeight

@@ -1,7 +1,12 @@
-export const handleError = (...arg) => // eslint-disable-line import/prefer-default-export
+export function handleError(...arg) {
   console.error('[rc-target-size]', ...arg) // eslint-disable-line no-console
+}
 
 
-export const handleWarning = (...arg) => // eslint-disable-line import/prefer-default-export
+export function handleWarning(...arg) {
   console.warn('[rc-target-size]', ...arg) // eslint-disable-line no-console
+}
 
+export function compare(a: number, b: number): boolean {
+  return Math.floor(a) === Math.floor(b)
+}
