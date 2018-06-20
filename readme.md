@@ -107,6 +107,8 @@ export default App
 | elementId 	| String 	| (optional) if you do not want to get the size of the current element, you can take another element. default: undefined |
 | handleWidth | Boolean | (optional) only update value when width resized. default: false                                                        |
 | handleHeight| Boolean	| (optional) only update value when height resized. default: false                                                       |
+| handleOffset| Boolean	| (optional) only update value when offset changed. default: false                                                       |
+| updateOnChange| Boolean	| (optional) will received values since the initial creation? default: true                                            |
 
 
 ## props
@@ -117,6 +119,7 @@ values return to your components, append to props
 |-----------	|---------	|-------------------------------------	|
 | width     	| Number  	| width of element. default: 0          |
 | height    	| Number  	| height of element. default: 0        	|
+| offset    	| Object  	| offset of element. default: { x: 0, y: 0 } |
 | canUseDOM 	| Boolean 	| the test was able to use DOM or not 	|
 
 [npm-url]: https://npmjs.org/package/rc-target-size
