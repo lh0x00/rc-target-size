@@ -40,6 +40,8 @@ $ yarn add rc-target-size
 
 ### component render
 
+[read more](https://github.com/lamhieu-vk/rc-target-size/blob/master/examples/component.js)
+
 ```javascript
 import React from "react";
 import { TargetSize } from "rc-target-size";
@@ -70,6 +72,8 @@ export default App;
 
 ### hoc render
 
+[read more](https://github.com/lamhieu-vk/rc-target-size/blob/master/examples/hoc.js)
+
 ```javascript
 import React from "react";
 import { targetSize } from "rc-target-size";
@@ -94,6 +98,40 @@ const ResizeOfMe = targetSize({
 const App = () => (
   <div>
     <ResizeOfMe />
+  </div>
+);
+
+export default App;
+```
+
+### child function
+
+[read more](https://github.com/lamhieu-vk/rc-target-size/blob/master/examples/childFunction.js)
+
+```javascript
+import React from "react";
+import { TargetSize } from "rc-target-size";
+
+const onSize = data => console.log("onSize", data);
+
+const App = () => (
+  <div>
+    // simple
+    <TargetSize>
+      {({ width, height }) => (
+        <div>
+          child function - size of me: {width}x{height}
+        </div>
+      )}
+    </TargetSize>
+    // or use with config
+    <TargetSize mode="debounce" rate={1000} handleHeight onSize={onSize}>
+      {({ width, height }) => (
+        <div>
+          child function - size of me: {width}x{height}
+        </div>
+      )}
+    </TargetSize>
   </div>
 );
 

@@ -138,13 +138,12 @@ class TargetSize extends PureComponent<TProps, TState> {
     const shouldUpdateOffset = (handleAll || handleOffset) && isChangedOffset
 
     if (shouldUpdateWidth || shouldUpdateHeight || shouldUpdateOffset) {
-      this.setState(
-        {
-          canUseDOM: true,
-          width: nextWidth,
-          height: nextHeight,
-          offset: nextOffset,
-        }, this.onSize)
+      this.setState({
+        canUseDOM: true,
+        width: nextWidth,
+        height: nextHeight,
+        offset: nextOffset,
+      }, this.onSize)
     }
 
     return true
