@@ -144,11 +144,7 @@ class TargetSize extends PureComponent<TProps, TState> {
           width: nextWidth,
           height: nextHeight,
           offset: nextOffset,
-        },
-        function callback() {
-          this.onResize()
-        },
-      )
+        }, this.onSize)
     }
 
     return true
@@ -158,11 +154,12 @@ class TargetSize extends PureComponent<TProps, TState> {
     this.element = el
   }
 
-  onResize = () => {
-    const { onResize } = this.props
+  onSize = () => {
+    const { ...rest } = this.state
+    const { onSize } = this.props
 
-    if (onResize && !isFunction(onResize)) handleWarning('onResize is not function')
-    if (isFunction(onResize)) onResize(this.state)
+    if (onSize && !isFunction(onSize)) handleWarning('onSize is not function')
+    if (isFunction(onSize)) onSize({ ...rest })
   }
 
   render() {

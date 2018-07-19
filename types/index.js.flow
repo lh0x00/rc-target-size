@@ -21,7 +21,7 @@ type TConfig = {
   handleWidth?: boolean,
   handleHeight?: boolean,
   mapStateToProps?: Function,
-  onResize?: Function,
+  onSize?: Function,
 };
 
 type TChildProps = { [key: string]: any }
