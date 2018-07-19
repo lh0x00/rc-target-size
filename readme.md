@@ -26,7 +26,6 @@ a wrapper use pure component wrap stateless functional components to class use p
 
 a polyfill for the resize observer api. [read more](https://www.npmjs.com/package/resize-observer-polyfill)
 
-
 # install
 
 ```bash
@@ -42,12 +41,16 @@ $ yarn add rc-target-size
 ### component render
 
 ```javascript
-import React from 'react'
-import { TargetSize } from 'rc-target-size'
+import React from "react";
+import { TargetSize } from "rc-target-size";
 
 const ResizeOfMe = ({ width, height }) => (
-  <div>component - size of me: {width}x{height}</div>
-)
+  <div>
+    component - size of me: {width}x{height}
+  </div>
+);
+
+const onSize = data => console.log("onSize", data);
 
 const App = () => (
   <div>
@@ -55,72 +58,73 @@ const App = () => (
     <TargetSize>
       <ResizeOfMe />
     </TargetSize>
-
     // or use with config
-    <TargetSize mode="debounce" rate={1000} handleHeight>
+    <TargetSize mode="debounce" rate={1000} handleHeight onSize={onSize}>
       <ResizeOfMe />
     </TargetSize>
   </div>
-)
+);
 
-export default App
-
+export default App;
 ```
 
 ### hoc render
 
 ```javascript
-import React from 'react'
-import { targetSize } from 'rc-target-size'
+import React from "react";
+import { targetSize } from "rc-target-size";
 
 const ResizeOfMeWrapped = ({ width, height }) => (
-  <div>hoc - size of me: {width}x{height}</div>
-)
+  <div>
+    hoc - size of me: {width}x{height}
+  </div>
+);
 
 // simple
-const ResizeOfMe = targetSize()(ResizeOfMeWrapped)
+const ResizeOfMe = targetSize()(ResizeOfMeWrapped);
 
 // or use with config
 const ResizeOfMe = targetSize({
-  mode: 'debounce',
+  mode: "debounce",
   rate: 1000,
   handleWidth: true,
-})(ResizeOfMeWrapped)
+  onSize: data => console.log("onSize", data);
+})(ResizeOfMeWrapped);
 
 const App = () => (
   <div>
     <ResizeOfMe />
   </div>
-)
+);
 
-export default App
+export default App;
 ```
 
 # documents
 
 ## config
 
-| name      	| type   	| description                                                                                                            |
-|-----------	|--------	|------------------------------------------------------------------------------------------------------------------------|
-| mode      	| String 	| (optional) values is 'debounce' or 'throttle', mode refresh size of component when resize. default: 'throttle'         |
-| rate      	| Number 	| (optional) rate refresh size of component when resize, measurement is milliseconds. default: 500                       |
-| elementId 	| String 	| (optional) if you do not want to get the size of the current element, you can take another element. default: undefined |
-| handleWidth | Boolean | (optional) only update value when width resized. default: false                                                        |
-| handleHeight| Boolean	| (optional) only update value when height resized. default: false                                                       |
-| handleOffset| Boolean	| (optional) only update value when offset changed. default: false                                                       |
-| updateOnChange| Boolean	| (optional) will received values since the initial creation? default: true                                            |
-
+| name           | type    | description                                                                                                            |
+| -------------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
+| mode           | String  | (optional) values is 'debounce' or 'throttle', mode refresh size of component when resize. default: 'throttle'         |
+| rate           | Number  | (optional) rate refresh size of component when resize, measurement is milliseconds. default: 500                       |
+| elementId      | String  | (optional) if you do not want to get the size of the current element, you can take another element. default: undefined |
+| handleWidth    | Boolean | (optional) only update value when width resized. default: false                                                        |
+| handleHeight   | Boolean | (optional) only update value when height resized. default: false                                                       |
+| handleOffset   | Boolean | (optional) only update value when offset changed. default: false                                                       |
+| updateOnChange | Boolean | (optional) will received values since the initial creation? default: true                                              |
+| onSisze        | Func    | (optional) function callback on have size. default: undefined                                                          |
 
 ## props
 
 values return to your components, append to props
 
-| name      	| type    	| description                         	|
-|-----------	|---------	|-------------------------------------	|
-| width     	| Number  	| width of element. default: 0          |
-| height    	| Number  	| height of element. default: 0        	|
-| offset    	| Object  	| offset of element. default: { x: 0, y: 0 } |
-| canUseDOM 	| Boolean 	| the test was able to use DOM or not 	|
+| name      | type    | description                                |
+| --------- | ------- | ------------------------------------------ |
+| width     | Number  | width of element. default: 0               |
+| height    | Number  | height of element. default: 0              |
+| offset    | Object  | offset of element. default: { x: 0, y: 0 } |
+| canUseDOM | Boolean | the test was able to use DOM or not        |
 
 [npm-url]: https://npmjs.org/package/rc-target-size
 [npm-version-image]: https://badge.fury.io/js/rc-target-size.svg
