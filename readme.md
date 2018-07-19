@@ -151,7 +151,7 @@ export default App;
 | handleHeight   | Boolean | (optional) only update value when height resized. default: false                                                       |
 | handleOffset   | Boolean | (optional) only update value when offset changed. default: false                                                       |
 | updateOnChange | Boolean | (optional) will received values since the initial creation? default: true                                              |
-| onSisze        | Func    | (optional) function callback on have size. default: undefined                                                          |
+| onSize         | Func    | (optional) function callback on have size. default: undefined                                                          |
 
 ## props
 
