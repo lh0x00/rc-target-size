@@ -29,7 +29,7 @@ class TargetSize extends PureComponent<TProps, TState> {
     }
 
     const refreshHandler = refreshMode && refreshMode[mode]
-    if (!isFunction(refreshHandler)) handleWarning('Mode is not support') // eslint-disable-line no-console
+    if (!isFunction(refreshHandler)) handleWarning('Mode is not support')
 
     const resizeObserver =
       (isFunction(refreshHandler) &&
@@ -58,9 +58,11 @@ class TargetSize extends PureComponent<TProps, TState> {
 
   shouldUseElement = (): [boolean, any] => {
     const resizableElement = this.getResizableElement()
-    if (!this.target) return [false, handleError('Not found target element')] // eslint-disable-line no-console
+    if (!this.target) return [false, handleError('Not found target element')]
 
-    if (!resizableElement) return [false, handleError('Not found resizable element')] // eslint-disable-line no-console
+    if (!resizableElement) {
+      return [false, handleError('Not found resizable element')]
+    }
 
     return [true, resizableElement]
   }
@@ -110,7 +112,9 @@ class TargetSize extends PureComponent<TProps, TState> {
 
     const entry = entries && entries[0]
 
-    if (!entry) return handleError('Can not observe the element, maybe the element does not exist')
+    if (!entry) {
+      return handleError('Can not observe the element, maybe the element does not exist')
+    }
 
     const element = this.getResizableElement()
 
@@ -125,16 +129,26 @@ class TargetSize extends PureComponent<TProps, TState> {
 
     const isChangedWidth = !compare(prevWidth, nextWidth)
     const isChangedHeight = !compare(prevHeight, nextHeight)
-    const isChangedOffset = !compare(prevOffset.y, nextOffset.y) || !compare(prevOffset.x, nextOffset.x)
+    const isChangedOffset =
+      !compare(prevOffset.y, nextOffset.y) ||
+      !compare(prevOffset.x, nextOffset.x)
 
     const shouldUpdateWidth = (handleAll || handleWidth) && isChangedWidth
     const shouldUpdateHeight = (handleAll || handleHeight) && isChangedHeight
     const shouldUpdateOffset = (handleAll || handleOffset) && isChangedOffset
 
     if (shouldUpdateWidth || shouldUpdateHeight || shouldUpdateOffset) {
-      this.setState({
-        canUseDOM: true, width: nextWidth, height: nextHeight, offset: nextOffset,
-      })
+      this.setState(
+        {
+          canUseDOM: true,
+          width: nextWidth,
+          height: nextHeight,
+          offset: nextOffset,
+        },
+        function callback() {
+          this.onResize()
+        },
+      )
     }
 
     return true
@@ -142,6 +156,13 @@ class TargetSize extends PureComponent<TProps, TState> {
 
   createRef = (el: any) => {
     this.element = el
+  }
+
+  onResize = () => {
+    const { onResize } = this.props
+
+    if (onResize && !isFunction(onResize)) handleWarning('onResize is not function')
+    if (isFunction(onResize)) onResize(this.state)
   }
 
   render() {
