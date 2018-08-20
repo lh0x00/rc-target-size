@@ -1,3 +1,5 @@
+/* @flow */
+
 import React from 'react'
 import TargetSize from 'components/TargetSize'
 

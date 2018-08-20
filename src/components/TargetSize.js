@@ -1,3 +1,5 @@
+/* @flow */
+
 import React, { PureComponent, isValidElement, cloneElement } from 'react'
 import { findDOMNode } from 'react-dom'
 import ResizeObserver from 'resize-observer-polyfill'
@@ -14,7 +16,7 @@ class TargetSize extends PureComponent<TProps, TState> {
 
   element: any = null // eslint-disable-line react/sort-comp
 
-  constructor(props) {
+  constructor(props: TProps) {
     super(props)
 
     const {
@@ -94,7 +96,7 @@ class TargetSize extends PureComponent<TProps, TState> {
     }
   }
 
-  createResizeObserver = (entries: any[]): any => {
+  createResizeObserver = (entries: any): any => {
     const {
       canUseDOM,
       width: prevWidth,

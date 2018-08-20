@@ -1,3 +1,5 @@
+/* @flow */
+
 export const DEFAULT_CONFIG = {
   mode: 'throttle',
   rate: 500,

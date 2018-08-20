@@ -1,3 +1,5 @@
+/* @flow */
+
 import TargetSize from 'components/TargetSize'
 import targetSize from 'hoc/targetSize'
 

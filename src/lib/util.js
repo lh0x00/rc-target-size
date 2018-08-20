@@ -1,8 +1,10 @@
-export function handleError(...arg) {
+/* @flow */
+
+export function handleError(...arg: any[]) {
   console.error('[rc-target-size]', ...arg) // eslint-disable-line no-console
 }
 
-export function handleWarning(...arg) {
+export function handleWarning(...arg: any[]) {
   console.warn('[rc-target-size]', ...arg) // eslint-disable-line no-console
 }
 
