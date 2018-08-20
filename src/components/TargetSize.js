@@ -1,11 +1,10 @@
 import React, { PureComponent, isValidElement, cloneElement } from 'react'
 import { findDOMNode } from 'react-dom'
 import ResizeObserver from 'resize-observer-polyfill'
-import isFunction from 'lodash.isfunction'
 import debounce from 'lodash.debounce'
 import throttle from 'lodash.throttle'
 import TargetReference from 'components/TargetReference'
-import { handleWarning, handleError, compare } from 'lib/util'
+import { handleWarning, handleError, compare, isFunction } from 'lib/util'
 import { DEFAULT_CONFIG, DEFAULT_VALUES } from 'lib/enums'
 
 const refreshMode = { debounce, throttle }
@@ -18,8 +17,10 @@ class TargetSize extends PureComponent<TProps, TState> {
   constructor(props) {
     super(props)
 
-    const { mode = DEFAULT_CONFIG.mode, rate = DEFAULT_CONFIG.rate } =
-      props || {}
+    const {
+      mode = DEFAULT_CONFIG.mode,
+      rate = DEFAULT_CONFIG.rate,
+    } = props || {}
 
     this.state = {
       canUseDOM: DEFAULT_VALUES.canUseDOM,
@@ -143,7 +144,8 @@ class TargetSize extends PureComponent<TProps, TState> {
         width: nextWidth,
         height: nextHeight,
         offset: nextOffset,
-      }, this.onSize)
+      })
+      this.onSize()
     }
 
     return true
