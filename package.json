@@ -1,6 +1,6 @@
 {
   "name": "rc-target-size",
-  "version": "2.3.0",
+  "version": "2.3.1",
   "description": "a tool help get size of element for React, support higher-order component and component render.",
   "main": "dist/index.js",
   "scripts": {
@@ -37,6 +37,7 @@
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-eslint": "^8.2.3",
+    "babel-jest": "^23.4.2",
     "babel-plugin-module-resolver": "^3.1.1",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-flow-strip-types": "^6.22.0",
@@ -55,6 +56,7 @@
     "eslint-plugin-react": "^7.8.2",
     "flow": "^0.2.3",
     "flow-bin": "^0.73.0",
+    "jest": "^23.5.0",
     "rimraf": "^2.6.2"
   },
   "dependencies": {
