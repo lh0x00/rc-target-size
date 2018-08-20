@@ -85,7 +85,7 @@ const ResizeOfMe = targetSize({
   mode: "debounce",
   rate: 1000,
   handleWidth: true,
-  onSize: data => console.log("onSize", data);
+  onSize: data => console.log("onSize", data),
 })(ResizeOfMeWrapped);
 
 const App = () => (
