@@ -8,10 +8,6 @@ export function handleWarning(...arg: any[]) {
   console.warn('[rc-target-size]', ...arg) // eslint-disable-line no-console
 }
 
-export function compare(a: number, b: number): boolean {
-  return Math.floor(a) === Math.floor(b)
-}
+export const compare = (a: number, b: number): boolean => a === b
 
-export function isFunction(fn: void): boolean {
-  return typeof fn === 'function'
-}
+export const isFunction = (fn: void): boolean => typeof fn === 'function'
