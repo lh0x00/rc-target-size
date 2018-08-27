@@ -64,7 +64,7 @@
   "dependencies": {
     "lodash.debounce": "^4.0.8",
     "lodash.throttle": "^4.1.1",
-    "rc-pure-component": "^0.1.5",
+    "rc-pure-component": "^0.2.0",
     "resize-observer-polyfill": "^1.5.0"
   },
   "peerDependencies": {
