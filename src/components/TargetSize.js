@@ -50,8 +50,8 @@ class TargetSize extends PureComponent<TProps, TState> {
   }
 
   toggleObserve = (isConnect: boolean): boolean => {
-    const [isAvailable, element] = this.shouldUseElement()
-    if (!isAvailable) return false
+    const [isAvailable, element] = this.canUseElement()
+    if (!isAvailable || !element) return false
 
     const type = isConnect ? 'observe' : 'unobserve'
     this.target[type](element)
@@ -59,12 +59,16 @@ class TargetSize extends PureComponent<TProps, TState> {
     return true
   }
 
-  shouldUseElement = (): [boolean, any] => {
+  canUseElement = (): [boolean, any] => {
     const resizableElement = this.getResizableElement()
-    if (!this.target) return [false, handleError('Not found target element')]
+    if (!this.target) {
+      handleError('Not found target element')
+      return [false, null]
+    }
 
     if (!resizableElement) {
-      return [false, handleError('Not found resizable element')]
+      handleError('Not found resizable element')
+      return [false, null]
     }
 
     return [true, resizableElement]
@@ -113,13 +117,9 @@ class TargetSize extends PureComponent<TProps, TState> {
 
     if (canUseDOM && !updateOnChange) return this.toggleObserve(false)
 
-    const entry = entries && entries[0]
-
-    if (!entry) {
-      return handleError('Can not observe the element, maybe the element does not exist')
-    }
-
     const element = this.getResizableElement()
+    const entry = entries && entries[0]
+    if (!element || !entry) return null
 
     const { width: nextWidth, height: nextHeight } = entry.contentRect
 
