@@ -9,8 +9,6 @@ install:
 script:
   - 'npm run verify'
   - if [[ $TRAVIS_BRANCH == 'release' ]] ; then echo npm run release; fi
-after_success:
-  - if [[ $TRAVIS_BRANCH == 'release' ]] ; then echo git add . && git push --follow-tags origin master; fi
 before_deploy:
   - export PACKAGE_VERSION=$(cat package.json | grep version | head -1 | awk -F= "{ print $2 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]')
   - export TRAVIS_TAG="v.$PACKAGE_VERSION"
@@ -20,18 +18,16 @@ deploy:
     email: lamhieu.vk@gmail.com
     api_key: $GITHUB_TOKEN
     on:
+      condition: $TRAVIS_BRANCH =~ ^release$
+      all_branches: true
       tag: true
-      branches:
-        only:
-        - release
   - provider: npm
     email: lamhieu.vk@gmail.com
     api_key: $NPM_TOKEN
     on:
+      condition: $TRAVIS_BRANCH =~ ^release$
+      all_branches: true
       tag: true
-      branches:
-        only:
-        - release
 notifications:
   email:
     recipients:
