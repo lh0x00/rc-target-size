@@ -4,7 +4,6 @@
 [![npm downloads][npm-downloads-image]][npm-url]
 [![github issues][github-issues-image]][github-issues-url]
 [![build status][travis-image]][npm-url]
-[![greenkeeper status][greenkeeper-image]][npm-url]
 
 a tool help get size of element for React, support higher-order component and component render.
 you can get the size of the element using a row without changing any of the elements!
@@ -163,4 +162,3 @@ values return to your components, append to props
 [github-issues-image]: https://img.shields.io/github/issues/lamhieu-vk/rc-target-size.svg
 [github-issues-url]: https://github.com/lamhieu-vk/rc-target-size/issues
 [travis-image]: https://travis-ci.com/lamhieu-vk/rc-target-size.svg?branch=master
-[greenkeeper-image]: https://badges.greenkeeper.io/lamhieu-vk/rc-target-size.svg

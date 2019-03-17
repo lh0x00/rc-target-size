@@ -11,8 +11,7 @@ module.exports = function config(api) {
       },
     ],
     '@babel/plugin-transform-runtime',
-    '@babel/plugin-proposal-class-properties',
-    '@babel/plugin-external-helpers',
+    '@babel/plugin-proposal-class-properties'
   ]
   const ignore = ['**/__test__', '**/**/__test__']
 
