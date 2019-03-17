@@ -6,7 +6,9 @@ import ResizeObserver from 'resize-observer-polyfill'
 import debounce from 'lodash.debounce'
 import throttle from 'lodash.throttle'
 import TargetReference from 'components/TargetReference'
-import { handleWarning, handleError, compare, isFunction } from 'lib/util'
+import {
+  handleWarning, handleError, compare, isFunction,
+} from 'lib/util'
 import { DEFAULT_CONFIG, DEFAULT_VALUES } from 'lib/enums'
 
 const refreshMode = { debounce, throttle }
@@ -34,10 +36,9 @@ class TargetSize extends PureComponent<TProps, TState> {
     const refreshHandler = refreshMode && refreshMode[mode]
     if (!isFunction(refreshHandler)) handleWarning('Mode is not support')
 
-    const resizeObserver =
-      (isFunction(refreshHandler) &&
-        refreshHandler(this.createResizeObserver, rate)) ||
-      this.createResizeObserver
+    const resizeObserver = (isFunction(refreshHandler)
+        && refreshHandler(this.createResizeObserver, rate))
+      || this.createResizeObserver
     this.target = new ResizeObserver(resizeObserver)
   }
 
@@ -132,9 +133,8 @@ class TargetSize extends PureComponent<TProps, TState> {
 
     const isChangedWidth = !compare(prevWidth, nextWidth)
     const isChangedHeight = !compare(prevHeight, nextHeight)
-    const isChangedOffset =
-      !compare(prevOffset.y, nextOffset.y) ||
-      !compare(prevOffset.x, nextOffset.x)
+    const isChangedOffset = !compare(prevOffset.y, nextOffset.y)
+      || !compare(prevOffset.x, nextOffset.x)
 
     const shouldUpdateWidth = (handleAll || handleWidth) && isChangedWidth
     const shouldUpdateHeight = (handleAll || handleHeight) && isChangedHeight

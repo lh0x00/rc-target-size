@@ -7,7 +7,8 @@ export default (
   config?: TConfig,
   mapStateToProps?: Function,
 ) => (WrappedComponent: any) => {
-  WrappedComponent.displayName = WrappedComponent.displayName || WrappedComponent.name || 'Component' // eslint-disable-line no-param-reassign
+  // eslint-disable-next-line no-param-reassign, max-len
+  WrappedComponent.displayName = WrappedComponent.displayName || WrappedComponent.name || 'Component'
 
   const TargetContainer = (props: TProps): any => (
     <TargetSize
