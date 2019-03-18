@@ -1,38 +1,19 @@
 language: node_js
 sudo: false
+cache:
+  yarn: true
 node_js:
+  - node
   - 8
+  - 6
+before_install:
+  - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.13.0
+  - export PATH="$HOME/.yarn/bin:$PATH"
+install:
+  - yarn install
+script:
+  - yarn lint
+  - yarn test
+  - yarn build
 env:
   - NODE_ENV=TEST
-install:
-  - 'npm install'
-script:
-  - npm run lint
-  - npm run test
-  - npm run build
-  - if [[ $TRAVIS_BRANCH == 'release' ]] ; then echo npm run release; fi
-before_deploy:
-  - export PACKAGE_VERSION=$(cat package.json | grep version | head -1 | awk -F= "{ print $2 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]')
-  - export TRAVIS_TAG="v.$PACKAGE_VERSION"
-  - echo "$TRAVIS_TAG" "$TRAVIS_COMMIT"
-deploy:
-  - provider: releases
-    email: lamhieu.vk@gmail.com
-    api_key: $GITHUB_TOKEN
-    on:
-      condition: $TRAVIS_BRANCH =~ ^release$
-      all_branches: true
-      tag: true
-  - provider: npm
-    email: lamhieu.vk@gmail.com
-    api_key: $NPM_TOKEN
-    on:
-      condition: $TRAVIS_BRANCH =~ ^release$
-      all_branches: true
-      tag: true
-notifications:
-  email:
-    recipients:
-    - lamhieu.vk@gmail.com
-    on_success: change
-    on_failure: always
