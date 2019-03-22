@@ -15,7 +15,7 @@ type TState = {
 }
 
 type TConfig = {
-  elementId?: string,
+  querySelector?: string,
   rate?: number,
   mode?: string,
   handleWidth?: boolean,

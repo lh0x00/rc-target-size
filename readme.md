@@ -1,24 +1,24 @@
-# about
+# About
 
 [![npm version][npm-version-image]][npm-url]
 [![npm downloads][npm-downloads-image]][npm-url]
 [![github issues][github-issues-image]][github-issues-url]
 [![build status][travis-image]][travis-url]
 
-a tool help get size of element for React, support higher-order component and component render.
-you can get the size of the element using a row without changing any of the elements!
+A tool help get size of element for React, support higher-order component and component render.
+You can get the size of the element using a row without changing any of the elements!
 
-### reference
+## Reference
 
-#### rc-pure-component
+### rc-pure-component
 
-a wrapper use pure component wrap stateless functional components to class use pure component to reduce re-render. [read more](https://www.npmjs.com/package/rc-pure-component)
+A wrapper use pure component wrap stateless functional components to class use pure component to reduce re-render. [read more](https://www.npmjs.com/package/rc-pure-component)
 
-#### resize-observer-polyfill
+### resize-observer-polyfill
 
-a polyfill for the resize observer api. [read more](https://www.npmjs.com/package/resize-observer-polyfill)
+A polyfill for the resize observer api. [read more](https://www.npmjs.com/package/resize-observer-polyfill)
 
-# install
+# Installation
 
 ```bash
 # use npm
@@ -28,9 +28,21 @@ $ npm install rc-target-size
 $ yarn add rc-target-size
 ```
 
-# usage
+## CDN
 
-### component render
+```html
+// unpkg
+<script src="https://unpkg.com/rc-target-size/dist/rc-target-size.js"></script>
+
+// jsdelivr
+<script src="https://cdn.jsdelivr.net/npm/rc-target-size/dist/rc-target-size.js"></script>
+```
+
+**Note** use CDN in browser, you can call `rcTargetSize` from Window API. it is available at `window.rcTargetSize`
+
+# Usage
+
+## Component render
 
 [read more](https://github.com/lamhieu-vk/rc-target-size/blob/master/examples/component.js)
 
@@ -62,7 +74,7 @@ const App = () => (
 export default App;
 ```
 
-### hoc render
+## HOC render
 
 [read more](https://github.com/lamhieu-vk/rc-target-size/blob/master/examples/hoc.js)
 
@@ -96,7 +108,7 @@ const App = () => (
 export default App;
 ```
 
-### child function
+## Child function
 
 [read more](https://github.com/lamhieu-vk/rc-target-size/blob/master/examples/childFunction.js)
 
@@ -130,22 +142,22 @@ const App = () => (
 export default App;
 ```
 
-# documents
+# Documents
 
-## config
+## Config
 
 | name           | type    | description                                                                                                            |
 | -------------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
 | mode           | String  | (optional) values is 'debounce' or 'throttle', mode refresh size of component when resize. default: 'throttle'         |
 | rate           | Number  | (optional) rate refresh size of component when resize, measurement is milliseconds. default: 500                       |
-| elementId      | String  | (optional) if you do not want to get the size of the current element, you can take another element. default: undefined |
+| querySelector  | String  | (optional) if you do not want to get the size of the current element, you can take another element. default: undefined |
 | handleWidth    | Boolean | (optional) only update value when width resized. default: false                                                        |
 | handleHeight   | Boolean | (optional) only update value when height resized. default: false                                                       |
 | handleOffset   | Boolean | (optional) only update value when offset changed. default: false                                                       |
 | updateOnChange | Boolean | (optional) will received values since the initial creation? default: true                                              |
 | onSize         | Func    | (optional) function callback on have size. default: undefined                                                          |
 
-## props
+## Props
 
 values return to your components, append to props
 

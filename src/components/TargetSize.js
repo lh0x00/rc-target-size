@@ -76,9 +76,9 @@ class TargetSize extends PureComponent<TProps, TState> {
   }
 
   getResizableElement = (): any => {
-    const { elementId } = this.props
-    return elementId
-      ? document.getElementById(elementId)
+    const { querySelector } = this.props
+    return querySelector
+      ? document.querySelector(querySelector)
       : findDOMNode(this.element) // eslint-disable-line react/no-find-dom-node
   }
 
